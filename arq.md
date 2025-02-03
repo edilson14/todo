@@ -1,0 +1,14 @@
+/
+- domain
+  - IRepositorys
+  - Entities
+  - models/dtos
+  - usecases
+- data
+  - adapters
+  - Repositorys
+  - services
+- ui/presatation
+  - controllers
+  - views
+  - states

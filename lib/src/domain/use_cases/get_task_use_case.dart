@@ -1,5 +1,5 @@
 import 'package:result_dart/result_dart.dart';
-import 'package:todo/src/domain/dto/task_dto.dart';
+import 'package:todo/src/domain/enteties/task_entetie.dart';
 
 import '../repository/task_repository_interface.dart';
 
@@ -8,7 +8,7 @@ class GetTaskUseCase {
 
   GetTaskUseCase(this._taskRepository);
 
-  AsyncResult<List<TaskDTO>> call() async {
+  AsyncResult<List<TaskEntetie>> call() async {
     return _taskRepository.getTasks();
   }
 }

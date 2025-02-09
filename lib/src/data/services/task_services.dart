@@ -26,7 +26,7 @@ class TaskServices {
     }
   }
 
-  AsyncResult deleteTask(TaskDTO task) async {
+  AsyncResult<Unit> deleteTask(TaskDTO task) async {
     try {
       await Future.delayed(const Duration(seconds: 2));
       // tasks.remove(task);

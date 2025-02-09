@@ -16,9 +16,8 @@ class TaskRepository implements ITasksRepository {
   }
 
   @override
-  AsyncResult<Unit> deleteTask(TaskDTO task) async {
-    await _taskServices.deleteTask(task);
-    return unit.toSuccess();
+  AsyncResult<Unit> deleteTask(TaskDTO task) {
+    return _taskServices.deleteTask(task);
   }
 
   @override
@@ -28,7 +27,6 @@ class TaskRepository implements ITasksRepository {
 
   @override
   AsyncResult<Unit> updateTask(TaskDTO task) async {
-    await _taskServices.updateTask(task);
-    return unit.toSuccess();
+    return await _taskServices.updateTask(task);
   }
 }

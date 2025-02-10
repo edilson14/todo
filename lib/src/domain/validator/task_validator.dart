@@ -1,7 +1,7 @@
 import 'package:lucid_validation/lucid_validation.dart';
-import 'package:todo/src/domain/entity/task_entity.dart';
+import 'package:todo/src/domain/dto/task_dto.dart';
 
-class TaskValidator extends LucidValidator<TaskEntity> {
+class TaskValidator extends LucidValidator<TaskDTO> {
   TaskValidator() {
     ruleFor((task) => task.name, key: 'name') //
         .isEmpty(message: 'Nome nao pode ser vazio')

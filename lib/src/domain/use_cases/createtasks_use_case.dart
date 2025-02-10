@@ -1,5 +1,5 @@
 import 'package:result_dart/result_dart.dart';
-import 'package:todo/src/domain/dto/create_task_parans.dart';
+import 'package:todo/src/domain/entity/task_entity.dart';
 import 'package:todo/src/domain/repository/task_repository_interface.dart';
 
 class CreateTaskUseCase {
@@ -7,7 +7,7 @@ class CreateTaskUseCase {
 
   CreateTaskUseCase(this._taskRepository);
 
-  AsyncResult<Unit> call(TaskCreateDTO task) async {
+  AsyncResult<Unit> call(TaskEntity task) async {
     return await _taskRepository.addTask(task);
   }
 }

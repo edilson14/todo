@@ -1,30 +1,32 @@
 import 'package:result_dart/result_dart.dart';
-import 'package:todo/src/data/services/task_services.dart';
+import 'package:todo/src/data/data_source/task_datasource.dart';
+import 'package:todo/src/domain/dto/create_task_dto.dart';
+import 'package:todo/src/domain/dto/task_dto.dart';
 import 'package:todo/src/domain/entity/task_entity.dart';
-import 'package:todo/src/domain/repository/task_repository_interface.dart';
+import 'package:todo/src/domain/repositories/task_repository_interface.dart';
 
 class TaskRepository implements ITasksRepository {
-  final TaskServices _taskServices;
+  final TaskDataSource _dataSource;
 
-  TaskRepository(this._taskServices);
+  TaskRepository(this._dataSource);
 
   @override
-  AsyncResult<Unit> addTask(TaskEntity task) async {
-    return _taskServices.addTask(task);
+  AsyncResult<Unit> addTask(CreateTaskDTO task) async {
+    return _dataSource.addTask(task);
   }
 
   @override
-  AsyncResult<Unit> deleteTask(TaskEntity task) {
-    return _taskServices.deleteTask(task);
+  AsyncResult<Unit> deleteTask(TaskDTO task) {
+    return _dataSource.deleteTask(task);
   }
 
   @override
   AsyncResult<List<TaskEntity>> getTasks() async {
-    return await _taskServices.getTasks();
+    return await _dataSource.getTasks();
   }
 
   @override
-  AsyncResult<Unit> updateTask(TaskEntity task) async {
-    return await _taskServices.updateTask(task);
+  AsyncResult<Unit> updateTask(TaskDTO task) async {
+    return await _dataSource.updateTask(task);
   }
 }

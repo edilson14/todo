@@ -16,8 +16,8 @@ class TaskRepository implements ITasksRepository {
   }
 
   @override
-  AsyncResult<Unit> deleteTask(TaskDTO task) {
-    return _dataSource.deleteTask(task);
+  AsyncResult<Unit> deleteTask(String taskID) {
+    return _dataSource.deleteTask(taskID);
   }
 
   @override

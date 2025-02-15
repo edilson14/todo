@@ -38,12 +38,12 @@ class TaskDataSource {
     }
   }
 
-  AsyncResult<Unit> deleteTask(TaskDTO task) async {
+  AsyncResult<Unit> deleteTask(String taskID) async {
     try {
       var allTasks =
           _convertTasksListToTaskEntities(await _loadTaskFromCache());
 
-      allTasks.removeWhere((item) => item.taskId == task.taskId);
+      allTasks.removeWhere((item) => item.taskId.toString() == taskID);
 
       _preferences.saveListItens(
         allTasks

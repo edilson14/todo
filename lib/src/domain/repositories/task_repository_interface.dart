@@ -7,5 +7,5 @@ abstract class ITasksRepository {
   AsyncResult<List<TaskEntity>> getTasks();
   AsyncResult<Unit> addTask(CreateTaskDTO task);
   AsyncResult<Unit> updateTask(TaskDTO task);
-  AsyncResult<Unit> deleteTask(TaskDTO task);
+  AsyncResult<Unit> deleteTask(String taskID);
 }

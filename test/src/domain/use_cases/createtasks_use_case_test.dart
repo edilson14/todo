@@ -35,10 +35,10 @@ void main() {
             description: 'Uma descricao bem longa só para nao dar problema',
           );
           final result = await createTaskUseCase.call(createDTO);
-          final expection = result.exceptionOrNull();
+          final exception = result.exceptionOrNull();
 
           expect(
-            expection!.toString(),
+            exception!.toString(),
             Exception('O nome não deve ser vazio').toString(),
           );
         },

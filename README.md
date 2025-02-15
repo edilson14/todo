@@ -32,3 +32,6 @@ To do list feita para o estudo da clean-arch
 
 - Todas as camadas que tem TU ( testes de unidades ) , tem inversao de dependencias , para facilitar o processo de testes
 - Para testar os uses_case , a gente faz o mock do repositories , passa para o use_case e vê se o mock foi chamdao , 
+
+# Testes de unidades 
+- Somentes os parametros que sao passados via construtores que criamos mocks

@@ -10,16 +10,16 @@ import 'package:todo/src/domain/entity/task_entity.dart';
 import 'package:todo/src/external/local_storage_interface.dart';
 
 class TaskDataSource {
-  final LocalStorageServiceInterface _preferences;
+  final LocalStorageServiceInterface _serviceInterface;
 
-  TaskDataSource(this._preferences);
+  TaskDataSource(this._serviceInterface);
 
   AsyncResult<Unit> addTask(CreateTaskDTO task) async {
     try {
-      final allTasks = await _preferences.getListItens() ?? [];
+      final allTasks = await _serviceInterface.getListItens() ?? [];
       allTasks.add(jsonEncode(CreateTaskDtoAdapter.toMap(task)));
 
-      _preferences.saveListItens(allTasks);
+      _serviceInterface.saveListItens(allTasks);
 
       return unit.toSuccess();
     } catch (e) {
@@ -45,13 +45,14 @@ class TaskDataSource {
 
       allTasks.removeWhere((item) => item.taskId.toString() == taskID);
 
-      _preferences.saveListItens(
-        allTasks
-            .map(
-              (item) => jsonEncode(TaskEntityAdapter.toJson(item)),
-            )
-            .toList(),
-      );
+      var remaningTasks = allTasks
+          .map(
+            (item) => jsonEncode(TaskEntityAdapter.toJson(item)),
+          )
+          .toList();
+      if (remaningTasks.isNotEmpty) {
+        _serviceInterface.saveListItens(remaningTasks);
+      }
       return unit.toSuccess();
     } catch (e) {
       return AsyncResult.error(e);
@@ -66,7 +67,7 @@ class TaskDataSource {
       allTasks.removeWhere((item) => item.taskId == task.taskId);
       allTasks.add(TaskDtoAdapter.toEntity(task));
 
-      _preferences.saveListItens(
+      _serviceInterface.saveListItens(
         allTasks
             .map(
               (item) => jsonEncode(TaskEntityAdapter.toJson(item)),
@@ -81,8 +82,7 @@ class TaskDataSource {
   }
 
   Future<List<String>?> _loadTaskFromCache() async {
-    final allTasks = _preferences.getListItens();
-
+    final allTasks = await _serviceInterface.getListItens();
     return allTasks;
   }
 
